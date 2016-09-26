@@ -4,15 +4,17 @@ Peer to Peer chatting and file sending using a central server as a connector.
 Application description
 
 SERVER
+
 1) The server uses socket.setsockopt to reuse the socket many times. Basically it waits for another requests.
 2) SO_REUSEADDR flag tells the kernel to reuse a local socket in TIME_WAIT state, without waiting for its natural timeout to expire.
 3) It then queues 10(backlog) clients before server accpets a client. After that free slot is made in queue.
 4) Then the server for any connections from client using select feature of select module.
 5) Whenever a new connection is created it prompts the client asking either it wants to listen or connect to someone.
-6) If a connection can be made then it connects the 2 clients and its role is over. So even if the server is disconnected the clients can 		continue to connect as their connecting by themselves.
+6) If a connection can be made then it connects the 2 clients and its role is over. So even if the server is disconnected the clients can continue to connect as their connecting by themselves.
 7) The cleint that was waiting to be connected acts as the server for the session.
 
 CLIENT
+
 1) It has 2 options to select. Either it can connect to existing clients or wait someone to connect to it.
 2) When it waits to be connected by someone it basically acts as server listening other clients who want to connect to it.
 3) After connection it can send messages or send files ('.txt', '.png', and '.pdf'). Other format of files can also be sent by modifying the 	code.
