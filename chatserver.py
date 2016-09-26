@@ -32,7 +32,7 @@ def verify(client, credentials, username, password, client_info):
     # Verify if username and password is present in already present
 
     if credentials.has_key(username) and credentials[username] == password:
-        client.send('Welcome back ' +username)
+        client.send('Welcome back ' +username + '\n')
         mood(client,client_info,username)
         return True
     
@@ -81,7 +81,7 @@ def start(client, client_list, credentials, client_info, log):
                 client.send('Password: ')
                 password = client.recv(size)
                 if verify(client,credentials,username,password,client_info) == True:
-                    client.send('\n' + 'Type your request or type "H" for help' )
+                    client.send('\n' + 'Type your request or type "H" for help - ' )
                     break
 
                 if x == 2:
